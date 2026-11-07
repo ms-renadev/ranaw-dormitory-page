@@ -17,6 +17,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="/index.html#rooms">Rooms</a></li>
     <li><a href="/index.html#about">About</a></li>
+    <li><a href="/index.html#safety-rules">Safety &amp; Rules</a></li>
     <li><a href="/index.html#testimonials">Reviews</a></li>
     <li><a href="/index.html#contact">Contact</a></li>
     <li><a href="/pages/rooms.html" class="active">All Rooms</a></li>
@@ -37,6 +38,21 @@
     </div>
     <h1>All Available <em>Rooms</em></h1>
     <p>Browse our complete selection of rooms at N & S Apartment and Boarding House. From budget-friendly shared spaces to premium private suites — find the one that fits your needs.</p>
+    <form class="room-search catalog-search" action="/pages/rooms.html#rooms-list" method="get">
+      <label class="search-field">
+        <span>Monthly budget</span>
+        <input type="number" name="budget" id="roomBudget" min="0" step="100" inputmode="numeric" placeholder="Any budget (₱)">
+      </label>
+      <label class="search-field">
+        <span>Room type</span>
+        <select name="type" id="roomType">
+          <option value="all">Any room type</option>
+          <option value="shared">Shared room</option>
+          <option value="private">Private room</option>
+        </select>
+      </label>
+      <button type="submit" class="search-submit">Find a room <span aria-hidden="true">→</span></button>
+    </form>
   </div>
 </div>
 
@@ -44,14 +60,14 @@
 <div class="filter-bar" id="filterBar">
   <span class="filter-label">Filter:</span>
   <button class="filter-btn active" data-filter="all" onclick="filterRooms('all', this)">All Rooms</button>
-  <button class="filter-btn" data-filter="available" onclick="filterRooms('available', this)">✓ Available</button>
+  <button class="filter-btn" data-filter="available" onclick="filterRooms('available', this)">Available</button>
   <button class="filter-btn" data-filter="shared" onclick="filterRooms('shared', this)">Shared</button>
   <button class="filter-btn" data-filter="private" onclick="filterRooms('private', this)">Private</button>
   <button class="filter-btn" data-filter="aircon" onclick="filterRooms('aircon', this)">Aircon</button>
 </div>
 
 <!-- ROOMS SECTION -->
-<div class="rooms-section">
+<div class="rooms-section" id="rooms-list">
 
   <!-- SHARED ROOMS GROUP -->
   <div class="section-group-label reveal" id="group-shared">
@@ -63,12 +79,12 @@
   <div class="rooms-grid" id="grid-shared">
 
     <!-- Room 1 -->
-    <div class="room-card reveal" data-type="shared" data-status="available" data-tags="shared available">
+    <div class="room-card reveal" data-type="shared" data-price="800" data-status="available" data-tags="shared available">
       <div class="room-img">
         <div class="room-img-placeholder p1">
           <img src="/images/triple double deck.jpg" alt="6-Bed Shared Room" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-available">✓ Available</span>
+        <span class="room-badge badge-available">Available</span>
         <span class="room-type-tag">Shared</span>
       </div>
       <div class="room-info">
@@ -95,12 +111,12 @@
     </div>
 
     <!-- Room 2 -->
-    <div class="room-card reveal" data-type="shared" data-status="available" data-tags="shared available">
+    <div class="room-card reveal" data-type="shared" data-price="900" data-status="available" data-tags="shared available">
       <div class="room-img">
         <div class="room-img-placeholder p2">
           <img src="/images/triple double deck 2.jpg" alt="4-Bed Shared Room" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-available">✓ Available</span>
+        <span class="room-badge badge-available">Available</span>
         <span class="room-type-tag">Shared</span>
       </div>
       <div class="room-info">
@@ -125,12 +141,12 @@
     </div>
 
     <!-- Room 3 -->
-    <div class="room-card reveal" data-type="shared" data-status="almost" data-tags="shared almost aircon">
+    <div class="room-card reveal" data-type="shared" data-price="1000" data-status="almost" data-tags="shared almost aircon">
       <div class="room-img">
         <div class="room-img-placeholder p3">
           <img src="/images/tw double deck.jpg" alt="2-Bed Shared Room with Aircon" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-almost">⚡ Almost Full</span>
+        <span class="room-badge badge-almost">Almost full</span>
         <span class="room-type-tag">Shared</span>
       </div>
 
@@ -156,12 +172,12 @@
     </div>
 
     <!-- Room 4 -->
-    <div class="room-card reveal" data-type="shared" data-status="available" data-tags="shared available aircon">
+    <div class="room-card reveal" data-type="shared" data-price="2800" data-status="available" data-tags="shared available aircon">
       <div class="room-img">
         <div class="room-img-placeholder p5">
           <img src="/images/2-bed space.jpg" alt="2-Bed Shared Room with Aircon" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-available">✓ Available</span>
+        <span class="room-badge badge-available">Available</span>
         <span class="room-type-tag">Shared</span>
       </div>
       <div class="room-info">
@@ -195,12 +211,12 @@
   <div class="rooms-grid" id="grid-private">
 
     <!-- Room 5 -->
-    <div class="room-card reveal" data-type="private" data-status="available" data-tags="private available">
+    <div class="room-card reveal" data-type="private" data-price="5200" data-status="available" data-tags="private available">
       <div class="room-img">
         <div class="room-img-placeholder p2">
           <img src="/images/solo room 1.jpg" alt="solo room #1" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-available">✓ Available</span>
+        <span class="room-badge badge-available">Available</span>
         <span class="room-type-tag">Private</span>
       </div>
       <div class="room-info">
@@ -224,12 +240,12 @@
     </div>
 
     <!-- Room 6 -->
-    <div class="room-card reveal" data-type="private" data-status="available" data-tags="private available aircon">
+    <div class="room-card reveal" data-type="private" data-price="5500" data-status="available" data-tags="private available aircon">
       <div class="room-img">
         <div class="room-img-placeholder p3">
           <img src="/images/solo room 2.jpg" alt="solo room #2" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-available">✓ Available</span>
+        <span class="room-badge badge-available">Available</span>
         <span class="room-type-tag">Private</span>
       </div>
       <div class="room-info">
@@ -254,12 +270,12 @@
     </div>
 
     <!-- Room 7 -->
-    <div class="room-card reveal" data-type="private" data-status="almost" data-tags="private almost aircon">
+    <div class="room-card reveal" data-type="private" data-price="5500" data-status="almost" data-tags="private almost aircon">
       <div class="room-img">
         <div class="room-img-placeholder p4">
           <img src="/images/solo room 3.png" alt="solo room #3" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-almost">⚡ Almost Full</span>
+        <span class="room-badge badge-almost">Almost full</span>
         <span class="room-type-tag">Private</span>
       </div>
       <div class="room-info">
@@ -284,12 +300,12 @@
     </div>
 
     <!-- Room 8 -->
-    <div class="room-card reveal" data-type="private" data-status="available" data-tags="private available aircon">
+    <div class="room-card reveal" data-type="private" data-price="4500" data-status="available" data-tags="private available aircon">
       <div class="room-img">
         <div class="room-img-placeholder p6">
           <img src="/images/solo room 4.webp" alt="solo room #2" onerror="this.style.display='none'">
         </div>
-        <span class="room-badge badge-new">🌟 New</span>
+        <span class="room-badge badge-new">New listing</span>
         <span class="room-type-tag">Private</span>
       </div>
       <div class="room-info">
@@ -317,9 +333,12 @@
 
   <!-- Empty state -->
   <div class="empty-state" id="emptyState">
-    <div class="empty-state-icon">🔍</div>
-    <h3>No rooms match this filter</h3>
-    <p>Try selecting a different category to see available rooms.</p>
+    <div class="empty-state-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" focusable="false"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2"/></svg>
+    </div>
+    <h3>No rooms match your search</h3>
+    <p>Try a higher budget or a different room type, or reset your search to see every room.</p>
+    <a class="empty-state-reset" href="/pages/rooms.html#rooms-list">Show all rooms</a>
   </div>
 
 </div><!-- end rooms-section -->
@@ -331,7 +350,7 @@
   <div class="contact-strip-methods">
     <a href="mailto:renyuhin216@gmail.com" class="strip-method">
       <div class="strip-method-icon">
-        <img src="/assets/gmail_icon.png" alt="Gmail">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>
       </div>
       <div>
         <div class="strip-method-label">Gmail</div>
@@ -340,7 +359,7 @@
     </a>
     <a href="https://facebook.com/NSApartmentBoardingHouse" target="_blank" rel="noopener noreferrer" class="strip-method">
       <div class="strip-method-icon">
-        <img src="/assets/facebook_icon.jpg" alt="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20 10.8a7.8 7.8 0 0 1-8 7.7 8.6 8.6 0 0 1-3.5-.7L4 19l1.2-3.7A7.4 7.4 0 0 1 4 10.8a7.8 7.8 0 0 1 8-7.8 7.8 7.8 0 0 1 8 7.8Z"/><path d="M8.2 11.2h7.6"/></svg>
       </div>
       <div>
         <div class="strip-method-label">Facebook</div>
@@ -349,7 +368,7 @@
     </a>
     <a href="tel:+639649420305" class="strip-method">
       <div class="strip-method-icon">
-        <img src="/assets/call_icon.png" alt="Call">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m8 4 2.4 3.5-1.7 2a14 14 0 0 0 5.8 5.8l2-1.7L20 16l-.6 3.5a1.8 1.8 0 0 1-2 1.5A16.9 16.9 0 0 1 3 6.1a1.8 1.8 0 0 1 1.5-2L8 4Z"/></svg>
       </div>
       <div>
         <div class="strip-method-label">Mobile Number</div>
@@ -365,6 +384,7 @@
   <div class="footer-links">
     <a href="/index.html#rooms">Rooms</a>
     <a href="/index.html#about">About</a>
+    <a href="/index.html#safety-rules">Safety &amp; Rules</a>
     <a href="/index.html#testimonials">Reviews</a>
     <a href="/index.html#contact">Contact</a>
     <a href="/pages/rooms.html">All Rooms</a>

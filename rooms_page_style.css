@@ -196,10 +196,23 @@
     padding: 5px 12px; border-radius: 50px;
     font-size: .75rem; font-weight: 700;
   }
-  .badge-available { background: var(--green-deep); color: #fff; }
-  .badge-almost { background: #e9c46a; color: #333; }
-  .badge-full { background: #e76f51; color: #fff; }
-  .badge-new { background: var(--green-light); color: #fff; }
+  .badge-available { background: #e8f0ea; color: #244b39; }
+  .badge-almost { background: #f2eee4; color: #6a5632; }
+  .badge-full { background: #f4e9e7; color: #7a3f35; }
+  .badge-new { background: #edf0ec; color: #475b4e; }
+  .badge-available::before,
+  .badge-almost::before,
+  .badge-full::before,
+  .badge-new::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: 1px;
+  }
 
   .room-type-tag {
     position: absolute; top: 14px; right: 14px;
@@ -272,8 +285,41 @@
     color: var(--gray-mid);
   }
   .empty-state.visible { display: block; }
-  .empty-state-icon { font-size: 3rem; margin-bottom: 16px; }
-  .empty-state h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--gray-dark); margin-bottom: 8px; }
+  .empty-state-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    margin: 0 auto 18px;
+    border: 1px solid #e3e7e0;
+    border-radius: 50%;
+    color: var(--green-mid);
+    background: #f6f7f4;
+  }
+  .empty-state-icon svg {
+    width: 21px;
+    height: 21px;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .empty-state h3 { font-family: 'DM Sans', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--gray-dark); margin-bottom: 8px; }
+  .empty-state p { max-width: 400px; margin: 0 auto; line-height: 1.6; }
+  .empty-state-reset {
+    display: inline-flex;
+    margin-top: 20px;
+    padding: 10px 16px;
+    border: 1px solid #dfe4dc;
+    border-radius: 6px;
+    color: var(--green-deep);
+    background: #fff;
+    font-size: .88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+  }
+  .empty-state-reset:hover { border-color: var(--green-mid); background: var(--green-mist); }
 
   /* ── CONTACT STRIP ── */
   .contact-strip {
@@ -427,9 +473,9 @@
   .room-img img { display: block; }
   .room-img-placeholder { background-color: #e4e5dd; }
   .room-badge { border-radius: 4px; top: 12px; left: 12px; }
-  .badge-available { background: var(--green-deep); }
-  .badge-almost { background: #ede2c9; color: #654f2e; }
-  .badge-new { background: #758f7e; }
+  .badge-available { background: #e8f0ea; color: #244b39; }
+  .badge-almost { background: #f2eee4; color: #6a5632; }
+  .badge-new { background: #edf0ec; color: #475b4e; }
   .room-type-tag { border-radius: 4px; }
   .room-title { font-family: 'DM Sans', sans-serif; font-size: 1.04rem; font-weight: 600; }
   .room-price { font-size: 1.32rem; }
@@ -483,4 +529,98 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     .reveal { opacity: 1; transform: none; }
+  }
+
+  /* Shared room finder */
+  .page-header-inner { max-width: 900px; margin-inline: auto; text-align: center; }
+  .breadcrumb { justify-content: center; }
+  .page-header p { max-width: 650px; margin-inline: auto; }
+  .room-search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 10px;
+    width: min(100%, 820px);
+    margin: 28px auto 0;
+    padding: 10px;
+    border: 1px solid #e6e9e1;
+    border-radius: 10px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 12px 32px rgba(25,59,50,.08);
+    text-align: left;
+  }
+  .search-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+    padding: 4px 12px;
+    text-align: left;
+  }
+  .search-field + .search-field { border-left: 1px solid #e6e9e1; }
+  .search-field > span {
+    color: #68716a;
+    font-size: .69rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .search-field input,
+  .search-field select {
+    width: 100%;
+    min-width: 0;
+    padding: 5px 22px 5px 0;
+    border: 0;
+    outline: 0;
+    color: #202923;
+    background: transparent;
+    font: 600 .9rem 'DM Sans', sans-serif;
+  }
+  .search-field input::placeholder { color: #202923; opacity: 1; }
+  .search-field input:focus-visible,
+  .search-field select:focus-visible { outline: 2px solid #527765; outline-offset: 3px; }
+  .search-submit {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 7px;
+    color: #fff;
+    background: #193b32;
+    font: 700 .88rem 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .search-submit:hover { background: #527765; transform: translateY(-1px); }
+  .search-submit span { font-size: 1.1rem; }
+  .strip-method-icon {
+    color: #fff;
+    background: rgba(255,255,255,.15);
+  }
+  .strip-method-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .filter-bar { justify-content: center; }
+  .filter-btn[aria-pressed="true"] { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+  .filter-btn[aria-pressed="false"] { background: #fff; color: var(--gray-dark); }
+  .nav-logo { text-decoration: none; }
+  @media (max-width: 768px) {
+    .page-header { padding-top: 112px; }
+    .room-search { grid-template-columns: 1fr 1fr; }
+    .search-submit { grid-column: 1 / -1; width: 100%; }
+    .search-field + .search-field { border-left: 0; }
+  }
+  @media (max-width: 420px) {
+    .room-search { grid-template-columns: 1fr; gap: 4px; padding: 12px; }
+    .search-field { padding: 8px; }
+    .search-field + .search-field { border-top: 1px solid #e6e9e1; }
+    .search-submit { grid-column: auto; }
   }

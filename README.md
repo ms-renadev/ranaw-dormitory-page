@@ -13,6 +13,7 @@ A static website for showcasing student accommodation at N & S Apartment and Boa
 The home page (`/index.html`) includes:
 
 - A responsive navigation menu and an introduction to the property.
+- A centered room finder that filters the catalog by monthly budget and room type.
 - A featured selection of three shared rooms, with pricing, amenities, and links to inquire.
 - An overview of the property and its location, with a link to open the location in Google Maps.
 - Tenant testimonials.
@@ -26,6 +27,7 @@ The catalog (`/pages/rooms.html`) lists eight room options:
 - Four shared rooms and four private rooms.
 - Room photos, capacity, monthly price, descriptions, and amenities.
 - Filters for all rooms, available rooms, shared rooms, private rooms, and rooms with air conditioning.
+- A matching budget and room-type search, with the selected filters carried over from the landing page.
 - Availability labels, room counts, and an empty state when no rooms match.
 - Direct inquiry links that take visitors to the contact section on the home page.
 

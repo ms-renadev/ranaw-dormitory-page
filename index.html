@@ -16,10 +16,11 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">N & S Apartment <span>and </span> Boarding House</div>
+  <a href="/index.html" class="nav-logo">N & S Apartment <span>and </span> Boarding House</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#rooms">Rooms</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#safety-rules">Safety &amp; Rules</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="/pages/rooms.html">All Rooms</a></li>
@@ -36,9 +37,24 @@
     <img src="/images/full pic.jpg" alt="Exterior of N & S Apartment and Boarding House in Marawi City" fetchpriority="high">
   </div>
   <div class="hero-content">
-    <div class="hero-badge">Student housing <span>MSU Cadayonan, Marawi City</span></div>
     <h1 id="hero-title">A place to focus.<br><em>Room to feel at home.</em></h1>
     <p class="hero-sub">Find a comfortable shared or private room close to campus, with a property manager you can contact directly.</p>
+
+    <form class="room-search hero-search" action="/pages/rooms.html" method="get">
+      <label class="search-field">
+        <span>Monthly budget</span>
+        <input type="number" name="budget" min="0" step="100" inputmode="numeric" placeholder="Any budget (₱)">
+      </label>
+      <label class="search-field">
+        <span>Room type</span>
+        <select name="type">
+          <option value="all">Any room type</option>
+          <option value="shared">Shared room</option>
+          <option value="private">Private room</option>
+        </select>
+      </label>
+      <button type="submit" class="search-submit">Find a room <span aria-hidden="true">→</span></button>
+    </form>
     
     <div class="hero-actions">
       <a href="#rooms" class="btn-primary">Explore rooms <span aria-hidden="true">↗</span></a>
@@ -66,6 +82,23 @@
   </div>
 </section>
 
+<!-- APARTMENT AMENITIES -->
+<section class="amenities-marquee" aria-label="Apartment amenities">
+  <div class="amenities-marquee-track">
+    <div class="amenities-marquee-group">
+      <span>Free Wi-Fi</span><span>24/7 security</span><span>Shared and private rooms</span>
+      <span>Air-conditioned room options</span><span>Study areas</span><span>Room locks</span>
+      <span>Shared and private CR options</span><span>Flexible move-in dates</span><span>Kitchen access in select rooms</span>
+    </div>
+    <div class="amenities-marquee-group" aria-hidden="true">
+      <span>Free Wi-Fi</span><span>24/7 security</span><span>Shared and private rooms</span>
+      <span>Air-conditioned room options</span><span>Study areas</span><span>Room locks</span>
+      <span>Shared and private CR options</span><span>Flexible move-in dates</span><span>Kitchen access in select rooms</span>
+    </div>
+  </div>
+  <p class="amenities-marquee-note">Room features vary. Check each listing for details.</p>
+</section>
+
 <!-- ROOMS -->
 <section id="rooms">
   <div class="rooms-header reveal">
@@ -84,7 +117,7 @@
         <div class="room-img-bg r1">
           <img src="/images/triple double deck.jpg" alt="3 Double Deck Room">
         </div>
-        <span class="room-badge available">✓ Available</span>
+        <span class="room-badge available">Available</span>
       </div>
       <div class="room-info">
         <div class="room-title">Room 100</div>
@@ -107,7 +140,7 @@
         <div class="room-img-bg r2">
            <img src="/images/triple double deck 2.jpg" alt="6 Bed Room">
         </div>
-        <span class="room-badge available">✓ Available</span>
+        <span class="room-badge available">Available</span>
       </div>
       <div class="room-info">
         <div class="room-title">Room 101</div>
@@ -129,7 +162,7 @@
         <div class="room-img-bg r3">
            <img src="/images/tw double deck.jpg" alt="Premium Suite">
         </div>
-        <span class="room-badge" style="background:#e9c46a;color:#333;">Almost Full</span>
+        <span class="room-badge almost-full">Almost full</span>
       </div>
       <div class="room-info">
         <div class="room-title">Room 102</div>
@@ -165,7 +198,7 @@
           <div class="owner-name">Maria Santos</div>
           <div class="owner-role">Property Owner & Manager</div>
           <div class="owner-contact">
-            <a href="tel:+639649420305">📞 +63 964 942 0305</a>
+            <a href="tel:+639649420305">Call +63 964 942 0305</a>
             <a href="mailto:renyuhin216@gmail.com">✉️ renyuhin216@gmail.com</a>
           </div>
         </div>
@@ -180,6 +213,33 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- SAFETY & RULES -->
+<section id="safety-rules">
+  <div class="safety-heading">
+    <div class="section-label">Safety &amp; Rules</div>
+    <h2>A safe stay starts with clear expectations.</h2>
+    <p class="section-sub">Know what to expect before you move in. Room features and house policies may vary, so confirm the details with the property manager.</p>
+  </div>
+  <div class="safety-grid">
+    <article class="safety-card">
+      <span class="safety-number">01</span>
+      <h3>On-site safety</h3>
+      <p>The property lists 24/7 security. Ask the manager about access, emergency contacts, and any safety details you need before booking.</p>
+    </article>
+    <article class="safety-card">
+      <span class="safety-number">02</span>
+      <h3>Room-specific features</h3>
+      <p>Locks, air-conditioning, CR access, and other amenities differ by room. Check the listing and confirm what is included in your chosen room.</p>
+    </article>
+    <article class="safety-card">
+      <span class="safety-number">03</span>
+      <h3>Confirm house rules</h3>
+      <p>Ask the manager about visitor arrangements, quiet hours, shared-space use, move-in times, and any rules in your rental agreement.</p>
+    </article>
+  </div>
+  <a class="safety-contact-link" href="#contact">Ask the property manager <span aria-hidden="true">→</span></a>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -325,6 +385,7 @@
   <div class="footer-links">
     <a href="#rooms">Rooms</a>
     <a href="#about">About</a>
+    <a href="#safety-rules">Safety &amp; Rules</a>
     <a href="#testimonials">Reviews</a>
     <a href="#contact">Contact</a>
     <a href="/pages/rooms.html">All Rooms</a>

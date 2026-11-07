@@ -35,50 +35,67 @@
   }
 
   // Filter rooms
+  let activeFilter = 'all';
+  let selectedType = 'all';
+  let maxBudget = Number.POSITIVE_INFINITY;
+
   function filterRooms(filter, btn) {
-    // Update active button
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    activeFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      const isActive = button === btn;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
 
     const cards = document.querySelectorAll('.room-card');
     let sharedVisible = 0, privateVisible = 0;
 
     cards.forEach(card => {
-      const tags = card.dataset.tags || '';
+      const tags = (card.dataset.tags || '').split(/\s+/);
       const type = card.dataset.type || '';
-      let show = false;
+      const price = Number(card.dataset.price);
+      let matchesCategory = false;
 
-      if (filter === 'all') {
-        show = true;
-      } else if (filter === 'available') {
-        show = card.dataset.status === 'available';
-      } else if (filter === 'shared') {
-        show = type === 'shared';
-      } else if (filter === 'private') {
-        show = type === 'private';
-      } else if (filter === 'aircon') {
-        show = tags.includes('aircon');
+      if (activeFilter === 'all') {
+        matchesCategory = true;
+      } else if (activeFilter === 'available') {
+        matchesCategory = card.dataset.status === 'available';
+      } else if (activeFilter === 'shared' || activeFilter === 'private') {
+        matchesCategory = type === activeFilter;
+      } else if (activeFilter === 'aircon') {
+        matchesCategory = tags.includes('aircon');
       }
+
+      const matchesType = selectedType === 'all' || type === selectedType;
+      const matchesBudget = Number.isFinite(price) && price <= maxBudget;
+      const show = matchesCategory && matchesType && matchesBudget;
 
       card.style.display = show ? '' : 'none';
-      if (show) {
-        if (type === 'shared') sharedVisible++;
-        if (type === 'private') privateVisible++;
-      }
+      if (show && type === 'shared') sharedVisible++;
+      if (show && type === 'private') privateVisible++;
     });
 
-    // Show/hide group labels
-    const groupShared = document.getElementById('group-shared');
-    const groupPrivate = document.getElementById('group-private');
-    groupShared.style.display = sharedVisible > 0 ? '' : 'none';
-    groupPrivate.style.display = privateVisible > 0 ? '' : 'none';
-
-    // Update counts
+    document.getElementById('group-shared').style.display = sharedVisible > 0 ? '' : 'none';
+    document.getElementById('group-private').style.display = privateVisible > 0 ? '' : 'none';
     document.getElementById('count-shared').textContent = sharedVisible + ' room' + (sharedVisible !== 1 ? 's' : '');
     document.getElementById('count-private').textContent = privateVisible + ' room' + (privateVisible !== 1 ? 's' : '');
-
-    // Empty state
-    const emptyState = document.getElementById('emptyState');
-    const totalVisible = sharedVisible + privateVisible;
-    emptyState.classList.toggle('visible', totalVisible === 0);
+    document.getElementById('emptyState').classList.toggle('visible', sharedVisible + privateVisible === 0);
   }
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const budgetSelect = document.getElementById('roomBudget');
+  const typeSelect = document.getElementById('roomType');
+  const requestedBudget = searchParams.get('budget') || '';
+  const requestedType = searchParams.get('type') || 'all';
+  const parsedBudget = Number(requestedBudget);
+
+  if (requestedBudget && Number.isFinite(parsedBudget) && parsedBudget >= 0) {
+    budgetSelect.value = String(parsedBudget);
+  }
+  if ([...typeSelect.options].some(option => option.value === requestedType)) {
+    typeSelect.value = requestedType;
+  }
+
+  selectedType = typeSelect.value;
+  maxBudget = budgetSelect.value ? Number(budgetSelect.value) : Number.POSITIVE_INFINITY;
+  filterRooms('all', document.querySelector('.filter-btn[data-filter="all"]'));
